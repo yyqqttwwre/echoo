@@ -59,8 +59,8 @@ except ImportError:
             print("Failed to install requests with pip and pip:", str(e))
             exit(0)
 import json
-API_ID = '1724716'
-API_HASH = '00b2d8f59c12c1b9a4bc63b70b461b2f'
+API_ID = '25875948'
+API_HASH = 'bbc8cd4753b320c932bd56254d2917a0'
 bot_token = ""
 running_processes = {}
 try:
@@ -71,7 +71,7 @@ except FileNotFoundError:
 
 if "token" not in info:
     while (True):
-        bot_token =('')
+        bot_token = input("Enter the bot token : ")
         response = requests.request(
             "GET", f"https://api.telegram.org/bot{bot_token}/getme")
         response_json = response.json()
@@ -86,7 +86,7 @@ else:
     bot_token = info["token"]
 
 if "sudo" not in info:
-    info["sudo"] = str('5207032121')
+    info["sudo"] = str(input("Enter the your telegram ID : "))
     info["admins"] = {}
     with open("echo_data.json", "w") as json_file:
         json.dump(info, json_file)
@@ -411,7 +411,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 ],
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            await update.message.reply_text("مرحبا بك في سورس التجميع الخاص ببوتات ايكو :\n\n- اشترك في قناة \n\n- سرعة التجميع : " + str(info["sleeptime"]), reply_markup=reply_markup)
+            await update.message.reply_text("مرحبا بك في سورس التجميع الخاص ببوتات ايكو :\n\n- اشترك في قناة تحديثات بوت التجميع - سرعة التجميع : " + str(info["sleeptime"]), reply_markup=reply_markup)
         elif str(update.message.chat.id) in info["admins"]:
             what_need_to_do_echo[str(update.message.chat.id)] = ""
             keyboard = [
